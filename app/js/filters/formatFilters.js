@@ -1,0 +1,1 @@
+define(["filters/filters"],function(e){e.filter("newLine",["$sce",function(e){return function(t){var n=escape(t).replace(/%0A/g,"<br/>");return t=unescape(n),e.trustAsHtml(t)}}])});

@@ -1,0 +1,1 @@
+define(["controllers/controllers"],function(e){"use strict";e.controller("breakLineController",["$scope","$element","$rootScope",function(e,t,n){n.$on("setBreakLineTitle",function(t){e.breakLine_title=n.breakLineTitle})}])});

@@ -1,0 +1,1 @@
+define(["angular","angularresource","angularstorage","angularcookie"],function(e){"use strict";return e.module("services",["ngResource","LocalStorageModule","ngCookies"]).config(["localStorageServiceProvider",function(e){e.setPrefix("cincaitalks")}])});

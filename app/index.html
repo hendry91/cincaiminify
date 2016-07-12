@@ -1,0 +1,141 @@
+﻿<html>
+
+<title>TARUCincaitalks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
+<link rel="stylesheet" href="lib/tether/css/tether.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script data-main="js/main" src="lib/tether/js/tether.min.js" type="text/javascript"></script>
+<script data-main="js/main" src="lib/requirejs/require.min.js" type="text/javascript"></script>
+<link href="css/style.css" rel="stylesheet">
+<link href="css/css.css" rel="stylesheet">
+
+<link href="css/bootstrap/font-awesome.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="img/favicon.png" />
+</head>
+
+<body style="background: #0a1219;">
+<nav id="top" class="navbar navbar-light bg-faded navbar-fixed-top"  ng-controller='menuController' >
+      <a class="navbar-brand" href="">CINCAITALKS</a>
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#sbda-nav"><i class="fa fa-bars"></i></button>
+  <div class="collapse navbar-toggleable-xs" id="sbda-nav">
+
+     <ul class="nav navbar-nav" >
+            <li class="nav-item active">
+                <a class="nav-link" ui-sref="publicwall">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item btn-group active">
+                <a href="" class="dropdown-toggle nav-link" type="button" id="A1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categoris
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dpCategories">
+                    <a class="dropdown-item" ui-sref="fnbwall">F&B</a>
+                    <a class="dropdown-item" ui-sref="sportwall">Sport</a>
+                    <a class="dropdown-item" ui-sref="complainwall">Beh Tahan</a>
+                    <a class="dropdown-item" ui-sref="lovewall">Love Story</a>
+                    <a class="dropdown-item" ui-sref="entertainmentwall">Entertainment</a>
+                    <a class="dropdown-item" ui-sref="snrwall">Sales & Rent</a>
+                    <a class="dropdown-item" ui-sref="lnfwall">Lost & Found</a>
+                    <a class="dropdown-item" ui-sref="otherwall">Other</a>
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" ui-sref="about">About us<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+
+         <ul class="nav navbar-nav navbar-right" style="margin-top:8px">
+            <li class="nav-item active">
+                <a href="#" ng-click="createNewPost()"><strong>Create Post</strong></a>
+            </li>
+            <li class="nav-item active">
+                <ul class="logouted navbar-nav nav" ng-show="unknowUser" style="padding:0px"> 
+                    <li class="nav-item active"><button class="btn btn-sm btn-primary btnFacebookLogin" style="padding:0px;margin-right:10px" ng-click="fbAuth('facebook')" type="submit">Login by Facebook</button></li>
+                    Please
+                    <span class="btnToLogin" style="color:blue" ng-click="toLogin()">Login</span> <strong>OR</strong> 
+                    <span class="btnToSignup" style="color:blue" ng-click="toSignUp()">Sign up</span>
+                </ul>
+            <div class="dropdown open logined" ng-show="knowUser">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px 5px 0px 10px;visibility:hidden">
+                {{displayname}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="visibility:hidden" >
+                <a class="dropdown-item" href="#" ng-if="loginType=='deployd'" ng-click="userSetting('password')">Change Password</a>
+                <a class="dropdown-item" href="#" ng-click="userSetting('setting')">Setting</a>
+                <a class="dropdown-item" href="#" style="color:red" ng-click="toLogout()">Logout</a>
+            </div>
+            </div>
+            </li>
+        </ul>
+  </div>
+</nav>
+
+<div id="overlay"></div>
+<div id="loading" style="background:url('img/loading.gif')no-repeat center center; position: absolute; width: 100%; height: 100%; z-index:88888;" ></div>
+
+<div id="section1" style="background:url('img/bg2.jpg')no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:220px;">
+
+<div class="container" >
+<!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron text-center" style="margin-top:54px;margin-bottom:100px;padding:30px;background:rgba(1,1,1,0.3)">
+        <h1 style="color:#eee;font-weight:600">Welcome to <span style="color:rgba(41, 216, 70, 0.8)">TARUCincaitalks</h1>
+        <p style="color:#eee">It's self service. We care privacy.</p>
+        <p style="color:#eee">Hide yourself DARE DARE post & comment.</p>
+    </div>
+
+</div> <!-- /container -->	
+	
+</div>
+<div id="section2">
+	<div class="row middleBreakLine" style="background:#ee2f2f;" ng-controller='breakLineController'>
+		<div class="text-center">
+			<h4 style="color:#fff;padding-top:10px;">{{breakLine_title}}</h4>
+		</div>
+	</div>
+	<div class="container">
+        <div ui-view></div>
+	</div>
+</div>
+
+<!-- Modal -->
+<direct-post-details></direct-post-details>
+<direct-create-post></direct-create-post>
+<direct-login-form></direct-login-form>
+<direct-signup-form></direct-signup-form>
+<direct-user-setting></direct-user-setting>
+<direct-edit-post></direct-edit-post>
+
+  <script>
+      document.cookie = "sid=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "username=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      window.fbAsyncInit = function () {
+          FB.init({
+              appId: '591423927697847',
+              xfbml: true,
+              version: 'v2.6',
+              oauth: true,
+              status: true,
+              cookie: true
+          });
+      };
+      (function (d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) { return; }
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      } (document, 'script', 'facebook-jssdk'));
+  </script>
+
+</body>
+</html>
